@@ -1,8 +1,12 @@
 import React, { useState, useEffect } from "react";
-import type { ChangeEvent } from "react";
-import { Gift, Users, Shuffle, Copy, Check } from "lucide-react";
+import { Gift, Shuffle, Copy, Check } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
 import "./styles.css";
+import Loading from "./components/Loading";
+import SuccessAlert from "./components/SuccessAlert";
+import ResultCard from "./components/ResultCard";
+import ParticipantForm from "./components/ParticipantForm";
+import ErrorAlert from "./components/ErrorAlert";
 
 const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL || "";
 const supabaseKey: string = import.meta.env.VITE_SUPABASE_KEY || "";
@@ -158,34 +162,16 @@ export default function SecretSanta() {
   };
 
   if (loading) {
-    return (
-      <div className="page-container page-container--centered">
-        <div className="loading-container">
-          <div className="loading-spinner"></div>
-          <p className="loading-text">Carregando...</p>
-        </div>
-      </div>
-    );
+    return <Loading />;
   }
 
   if (view === "result" && resultData) {
     return (
-      <div className="page-container page-container--result">
-        <div className="card card--result">
-          <div className="icon-circle icon-circle--red icon-circle--result">
-            <Gift className="icon--red" />
-          </div>
-          <h1 className="title title--medium title--center">
-            {resultData.drawName}
-          </h1>
-          <p className="subtitle subtitle--gray">Olá, {resultData.giver}!</p>
-          <div className="result-box">
-            <p className="result-label">Você tirou:</p>
-            <p className="result-name">{resultData.receiver}</p>
-          </div>
-          <p className="text-small">Mantenha em segredo! 🤫</p>
-        </div>
-      </div>
+      <ResultCard
+        drawName={resultData.drawName}
+        giver={resultData.giver}
+        receiver={resultData.receiver}
+      />
     );
   }
 
@@ -194,20 +180,22 @@ export default function SecretSanta() {
       <div className="page-container">
         <div className="content-wrapper">
           <div className="card">
-            <div className="links-header">
+            <div className="links-header" role="status" aria-live="polite">
               <div className="icon-circle icon-circle--green">
                 <Check className="icon--green" />
               </div>
               <h1 className="title title--medium">Sorteio Realizado!</h1>
               <p className="subtitle subtitle--dark">
-                Envie cada link para o participante correspondente
+                Envie cada link para o participante correspondente.
               </p>
-              <p className="alert--warning">
-                ⚠️ Importante: Salve ou envie os links agora! Eles só funcionam
-                durante esta sessão.
+              <p
+                className="alert alert--warning"
+                role="alert"
+                aria-live="assertive"
+              >
+                ⚠️ Os links abaixo são únicos para cada participante. Salve ou envie-os agora!
               </p>
             </div>
-
             <div className="links-list">
               {links.map((item, index) => (
                 <div key={index} className="link-item">
@@ -233,7 +221,6 @@ export default function SecretSanta() {
                 </div>
               ))}
             </div>
-
             <button onClick={resetApp} className="button--reset">
               Criar Novo Sorteio
             </button>
@@ -257,7 +244,7 @@ export default function SecretSanta() {
             </p>
           </div>
 
-          {error && <div className="alert alert--error">{error}</div>}
+          {error && <ErrorAlert message={error} />}
 
           <div className="form-group">
             <label className="form-label">Nome do Sorteio</label>
@@ -270,45 +257,12 @@ export default function SecretSanta() {
             />
           </div>
 
-          <div className="form-group">
-            <div className="form-header">
-              <label className="form-label form-label--flex">
-                <Users className="form-label-icon" />
-                Participantes
-              </label>
-              <span className="text-count">
-                {participants.filter((p) => p.trim()).length} participantes
-              </span>
-            </div>
-
-            <div className="input-group">
-              {participants.map((participant, index) => (
-                <div key={index} className="input-row">
-                  <input
-                    type="text"
-                    value={participant}
-                    onChange={(e: ChangeEvent<HTMLInputElement>) =>
-                      updateParticipant(index, e.target.value)
-                    }
-                    placeholder={`Participante ${index + 1}`}
-                    className="input input--small"
-                  />
-                  {participants.length > 1 && (
-                    <button
-                      onClick={() => removeParticipant(index)}
-                      className="button--remove"
-                    >
-                      ✕
-                    </button>
-                  )}
-                </div>
-              ))}
-            </div>
-
-            <button onClick={addParticipant} className="button--add">
-              + Adicionar Participante
-            </button>
-          </div>
+          <ParticipantForm
+            participants={participants}
+            updateParticipant={updateParticipant}
+            removeParticipant={removeParticipant}
+            addParticipant={addParticipant}
+          />
 
           <button
             onClick={performDraw}
