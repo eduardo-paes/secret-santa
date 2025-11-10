@@ -1,10 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import AmigoOculto from './index';
-import './index.css';
+import SecretSanta from '.';
 
 ReactDOM.createRoot(document.getElementById('root')!).render(
   <React.StrictMode>
-    <AmigoOculto />
+    <SecretSanta />
   </React.StrictMode>
 );

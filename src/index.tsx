@@ -10,7 +10,7 @@ const appUrl: string = import.meta.env.VITE_APP_URL || "";
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
-export default function AmigoOculto() {
+export default function SecretSanta() {
   const [view, setView] = useState<string>('home');
   const [participants, setParticipants] = useState<string[]>(['']);
   const [drawName, setDrawName] = useState<string>('');
@@ -44,15 +44,6 @@ export default function AmigoOculto() {
     }
   };
 
-  const shuffleArray = (array: string[]): string[] => {
-    const shuffled = [...array];
-    for (let i = shuffled.length - 1; i > 0; i--) {
-      const j = Math.floor(Math.random() * (i + 1));
-      [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-    }
-    return shuffled;
-  };
-
   const performDraw = async (): Promise<void> => {
     setError('');
     const validParticipants = participants.filter((p: string) => p.trim() !== '');
@@ -66,7 +57,7 @@ export default function AmigoOculto() {
     }
     setLoading(true);
     try {
-      // Simulação: salvar sorteio no Supabase
+      // Salva sorteio no Supabase
       const drawId = `draw_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
       let shuffled = [...validParticipants];
       let validDraw = false;
@@ -82,6 +73,7 @@ export default function AmigoOculto() {
         setLoading(false);
         return;
       }
+      
       const results = validParticipants.map((giver, i) => ({
         draw_id: drawId,
         draw_name: drawName,
@@ -89,6 +81,7 @@ export default function AmigoOculto() {
         receiver: shuffled[i],
         result_id: `result_${Date.now()}_${i}_${Math.random().toString(36).substr(2, 9)}`
       }));
+
       // Salvar no Supabase
       const { error } = await supabase.from('results').insert(results);
       if (error) {
@@ -96,6 +89,7 @@ export default function AmigoOculto() {
         setLoading(false);
         return;
       }
+
       // Gerar links
       const links = results.map(r => ({
         name: r.giver,
