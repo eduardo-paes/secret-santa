@@ -3,7 +3,6 @@ import { Gift, Shuffle, Copy, Check } from "lucide-react";
 import { createClient } from "@supabase/supabase-js";
 import "./styles.css";
 import Loading from "./components/Loading";
-import SuccessAlert from "./components/SuccessAlert";
 import ResultCard from "./components/ResultCard";
 import ParticipantForm from "./components/ParticipantForm";
 import ErrorAlert from "./components/ErrorAlert";
