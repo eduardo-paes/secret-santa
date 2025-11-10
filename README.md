@@ -63,7 +63,7 @@ O **Secret Santa App** é uma aplicação simples e intuitiva para organizar sor
 
 6. Acesse o app no navegador:
 
-   ```
+   ```bash
    http://localhost:5173
    ```
 
