@@ -1,0 +1,25 @@
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+  <!-- Background Circle -->
+  <circle cx="32" cy="32" r="32" fill="#dc2626"/>
+  
+  <!-- Gift Box Base -->
+  <rect x="18" y="28" width="28" height="22" rx="2" fill="#fff"/>
+  
+  <!-- Gift Box Ribbon Vertical -->
+  <rect x="29" y="28" width="6" height="22" fill="#fca5a5"/>
+  
+  <!-- Gift Box Ribbon Horizontal -->
+  <rect x="18" y="36" width="28" height="6" fill="#fca5a5"/>
+  
+  <!-- Gift Box Lid -->
+  <rect x="16" y="22" width="32" height="8" rx="2" fill="#fff"/>
+  <rect x="16" y="22" width="32" height="3" fill="#fca5a5"/>
+  
+  <!-- Bow -->
+  <ellipse cx="26" cy="18" rx="5" ry="4" fill="#fee2e2"/>
+  <ellipse cx="38" cy="18" rx="5" ry="4" fill="#fee2e2"/>
+  <circle cx="32" cy="18" r="3" fill="#fff"/>
+  
+  <!-- Question Mark (Secret) -->
+  <text x="32" y="44" font-family="Arial, sans-serif" font-size="12" font-weight="bold" fill="#dc2626" text-anchor="middle">?</text>
+</svg>
