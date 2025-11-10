@@ -1,8 +1,14 @@
+# Netlify configuration for Secret Santa project
 [build]
-  publish = "."
-  functions = "netlify/functions"
+  command = "npm run build"
+  publish = "dist"
 
+[dev]
+  command = "npm run dev"
+  port = 5173
+
+# Redirect all requests to index.html for SPA routing
 [[redirects]]
-  from = "/api/*"
-  to = "/.netlify/functions/:splat"
+  from = "/*"
+  to = "/index.html"
   status = 200
