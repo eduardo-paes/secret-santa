@@ -152,10 +152,27 @@ export default function AmigoOculto() {
 
   if (loading) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 to-green-50 flex items-center justify-center">
-        <div className="text-center">
-          <div className="animate-spin rounded-full h-16 w-16 border-b-4 border-red-600 mx-auto"></div>
-          <p className="mt-4 text-gray-600">Carregando...</p>
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#f8fafc",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <div style={{ textAlign: "center" }}>
+          <div
+            style={{
+              animation: "spin 1s linear infinite",
+              borderRadius: "50%",
+              height: "64px",
+              width: "64px",
+              borderBottom: "4px solid #dc2626",
+              margin: "0 auto",
+            }}
+          ></div>
+          <p style={{ marginTop: "16px", color: "#4b5563" }}>Carregando...</p>
         </div>
       </div>
     );
@@ -163,33 +180,83 @@ export default function AmigoOculto() {
 
   if (view === 'result' && resultData) {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 to-green-50 flex items-center justify-center p-4">
-        <div className="bg-white rounded-2xl shadow-xl p-8 max-w-md w-full text-center">
-          <div className="bg-red-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-6">
-            <Gift className="w-10 h-10 text-red-600" />
+      <div
+        style={{
+          minHeight: "100vh",
+          background: "#f8fafc",
+          display: "flex",
+          justifyContent: "center",
+          padding: "32px",
+        }}
+      >
+        <div
+          style={{
+            background: "#fff",
+            borderRadius: "16px",
+            boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+            padding: "32px",
+            maxWidth: "400px",
+            maxHeight: "400px",
+            width: "100%",
+            textAlign: "center",
+          }}
+        >
+          <div
+            style={{
+              background: "#fee2e2",
+              borderRadius: "50%",
+              width: "80px",
+              height: "80px",
+              display: "flex",
+              alignItems: "center",
+              justifyContent: "center",
+              margin: "0 auto 24px",
+            }}
+          >
+            <Gift style={{ width: "40px", height: "40px", color: "#dc2626" }} />
           </div>
-          
-          <h1 className="text-2xl font-bold text-gray-800 mb-2">
+          <h1
+            style={{
+              fontSize: "24px",
+              fontWeight: "bold",
+              color: "#1e293b",
+              marginBottom: "8px",
+            }}
+          >
             {resultData.drawName}
           </h1>
-          
-          <p className="text-gray-600 mb-4">Olá, {resultData.giver}!</p>
-          
-          <div className="bg-green-50 border-2 border-green-200 rounded-xl p-6 mb-6">
-            <p className="text-sm text-gray-600 mb-2">Você tirou:</p>
-            <p className="text-3xl font-bold text-green-700">{resultData.receiver}</p>
+          <p style={{ color: "#4b5563", marginBottom: "16px" }}>
+            Olá, {resultData.giver}!
+          </p>
+          <div
+            style={{
+              background: "#f0fdf4",
+              border: "2px solid #bbf7d0",
+              borderRadius: "16px",
+              padding: "24px",
+              marginBottom: "24px",
+            }}
+          >
+            <p
+              style={{
+                fontSize: "14px",
+                color: "#4b5563",
+                marginBottom: "8px",
+              }}
+            >
+              Você tirou:
+            </p>
+            <p
+              style={{ fontSize: "24px", fontWeight: "bold", color: "#15803d" }}
+            >
+              {resultData.receiver}
+            </p>
           </div>
-          
-          <p className="text-sm text-gray-500 mb-6">
+          <p
+            style={{ fontSize: "14px", color: "#6b7280", marginBottom: "24px" }}
+          >
             Mantenha em segredo! 🤫
           </p>
-          
-          <button
-            onClick={resetApp}
-            className="w-full bg-gray-200 text-gray-700 py-3 rounded-lg hover:bg-gray-300 transition"
-          >
-            Criar Novo Sorteio
-          </button>
         </div>
       </div>
     );
@@ -197,48 +264,121 @@ export default function AmigoOculto() {
 
   if (view === 'links') {
     return (
-      <div className="min-h-screen bg-gradient-to-br from-red-50 to-green-50 p-4 py-8">
-        <div className="max-w-2xl mx-auto">
-          <div className="bg-white rounded-2xl shadow-xl p-8">
-            <div className="text-center mb-8">
-              <div className="bg-green-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-                <Check className="w-10 h-10 text-green-600" />
+      <div
+        style={{ minHeight: "100vh", background: "#f8fafc", padding: "32px" }}
+      >
+        <div style={{ maxWidth: "640px", margin: "0 auto" }}>
+          <div
+            style={{
+              background: "#fff",
+              borderRadius: "16px",
+              boxShadow: "0 4px 16px rgba(0,0,0,0.1)",
+              padding: "32px",
+            }}
+          >
+            <div style={{ textAlign: "center", marginBottom: "32px" }}>
+              <div
+                style={{
+                  background: "#dcfce7",
+                  borderRadius: "50%",
+                  width: "80px",
+                  height: "80px",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  margin: "0 auto 16px",
+                }}
+              >
+                <Check
+                  style={{ width: "40px", height: "40px", color: "#16a34a" }}
+                />
               </div>
-              <h1 className="text-3xl font-bold text-gray-800 mb-2">
+              <h1
+                style={{
+                  fontSize: "24px",
+                  fontWeight: "bold",
+                  color: "#1e293b",
+                  marginBottom: "8px",
+                }}
+              >
                 Sorteio Realizado!
               </h1>
-              <p className="text-gray-600 mb-2">
+              <p style={{ color: "#4b5563", marginBottom: "8px" }}>
                 Envie cada link para o participante correspondente
               </p>
-              <p className="text-xs text-yellow-600 bg-yellow-50 px-4 py-2 rounded-lg inline-block">
-                ⚠️ Importante: Salve ou envie os links agora! Eles só funcionam durante esta sessão.
+              <p
+                style={{
+                  fontSize: "12px",
+                  color: "#b45309",
+                  background: "#fef3c7",
+                  padding: "8px 16px",
+                  borderRadius: "8px",
+                  display: "inline-block",
+                }}
+              >
+                ⚠️ Importante: Salve ou envie os links agora! Eles só funcionam
+                durante esta sessão.
               </p>
             </div>
 
-            <div className="space-y-3">
+            <div
+              style={{ display: "flex", flexDirection: "column", gap: "12px" }}
+            >
               {links.map((item, index) => (
-                <div key={index} className="bg-gray-50 rounded-lg p-4 border border-gray-200">
-                  <div className="flex items-center justify-between mb-2">
-                    <span className="font-semibold text-gray-800">{item.name}</span>
+                <div
+                  key={index}
+                  style={{
+                    background: "#f9fafb",
+                    borderRadius: "8px",
+                    padding: "16px",
+                    border: "1px solid #e5e7eb",
+                    boxShadow: "0 2px 4px rgba(0,0,0,0.05)",
+                  }}
+                >
+                  <div
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                    }}
+                  >
+                    <span
+                      style={{
+                        fontWeight: "bold",
+                        color: "#1e293b",
+                        fontSize: "16px",
+                      }}
+                    >
+                      {item.name}
+                    </span>
                     <button
                       onClick={() => copyToClipboard(item.link, item.name)}
-                      className="flex items-center gap-2 bg-blue-600 text-white px-4 py-2 rounded-lg hover:bg-blue-700 transition text-sm"
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        background: "#2563eb",
+                        color: "#fff",
+                        padding: "8px 16px",
+                        border: "none",
+                        borderRadius: "8px",
+                        fontSize: "14px",
+                        cursor: "pointer",
+                        transition: "background 0.3s",
+                      }}
                     >
                       {copied === item.name ? (
                         <>
-                          <Check className="w-4 h-4" />
+                          <Check style={{ width: "16px", height: "16px" }} />
                           Copiado!
                         </>
                       ) : (
                         <>
-                          <Copy className="w-4 h-4" />
+                          <Copy style={{ width: "16px", height: "16px" }} />
                           Copiar Link
                         </>
                       )}
                     </button>
-                  </div>
-                  <div className="text-xs text-gray-500 break-all bg-white p-2 rounded border border-gray-200">
-                    {item.link}
                   </div>
                 </div>
               ))}
@@ -246,7 +386,18 @@ export default function AmigoOculto() {
 
             <button
               onClick={resetApp}
-              className="w-full mt-8 bg-red-600 text-white py-3 rounded-lg hover:bg-red-700 transition font-semibold"
+              style={{
+                width: "100%",
+                marginTop: "32px",
+                background: "#dc2626",
+                color: "#fff",
+                padding: "12px",
+                border: "none",
+                borderRadius: "8px",
+                fontWeight: "bold",
+                cursor: "pointer",
+                transition: "background 0.3s",
+              }}
             >
               Criar Novo Sorteio
             </button>
@@ -327,7 +478,7 @@ export default function AmigoOculto() {
           <button
             onClick={performDraw}
             disabled={loading}
-            style={{ width: '100%', padding: '16px', background: loading ? '#94a3b8' : '#dc2626', color: '#fff', borderRadius: 8, fontWeight: 600, fontSize: 17, border: 'none', cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
+            style={{ width: '100%', padding: '16px', background: loading ? '#94a3b8' : '#dc2626', color: '#fff', borderRadius: 8, fontWeight: 'bold', fontSize: 17, border: 'none', cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
           >
             <Shuffle style={{ width: 22, height: 22 }} />
             Realizar Sorteio
