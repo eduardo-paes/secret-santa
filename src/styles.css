@@ -1,0 +1,384 @@
+/* Import a modern Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+
+/* Apply the font globally */
+body {
+  font-family: 'Inter', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+* {
+  box-sizing: inherit;
+}
+
+/* Layout */
+.page-container {
+  min-height: 100vh;
+  background: #f8fafc;
+  padding: 32px;
+}
+
+.page-container--centered {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.page-container--result {
+  display: flex;
+  justify-content: center;
+}
+
+.content-wrapper {
+  max-width: 640px;
+  margin: 0 auto;
+}
+
+.content-wrapper--small {
+  max-width: 600px;
+}
+
+/* Cards */
+.card {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.1);
+  padding: 32px;
+}
+
+.card--small {
+  box-shadow: 0 2px 16px rgba(0, 0, 0, 0.08);
+}
+
+.card--result {
+  max-width: 400px;
+  max-height: 400px;
+  width: 100%;
+  text-align: center;
+}
+
+/* Icons */
+.icon-circle {
+  border-radius: 50%;
+  width: 80px;
+  height: 80px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 16px;
+}
+
+.icon-circle--red {
+  background: #fee2e2;
+}
+
+.icon-circle--green {
+  background: #dcfce7;
+}
+
+.icon-circle--result {
+  margin: 0 auto 24px;
+}
+
+.icon--red {
+  width: 40px;
+  height: 40px;
+  color: #dc2626;
+}
+
+.icon--green {
+  width: 40px;
+  height: 40px;
+  color: #16a34a;
+}
+
+/* Typography */
+.title {
+  font-size: 28px;
+  font-weight: bold;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.title--center {
+  text-align: center;
+}
+
+.title--medium {
+  font-size: 24px;
+}
+
+.subtitle {
+  color: #475569;
+}
+
+.subtitle--center {
+  text-align: center;
+}
+
+.subtitle--gray {
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+
+.subtitle--dark {
+  color: #4b5563;
+  margin-bottom: 16px;
+}
+
+.text-small {
+  font-size: 14px;
+  color: #6b7280;
+  margin-bottom: 24px;
+}
+
+.text-tiny {
+  font-size: 13px;
+  text-align: center;
+  color: #64748b;
+  margin-top: 16px;
+}
+
+.text-count {
+  font-size: 13px;
+  color: #64748b;
+}
+
+/* Loading */
+.loading-container {
+  text-align: center;
+}
+
+.loading-spinner {
+  animation: spin 1s linear infinite;
+  border-radius: 50%;
+  height: 64px;
+  width: 64px;
+  border-bottom: 4px solid #dc2626;
+  margin: 0 auto;
+}
+
+.loading-text {
+  margin-top: 16px;
+  color: #4b5563;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+/* Result Box */
+.result-box {
+  background: #f0fdf4;
+  border: 2px solid #bbf7d0;
+  border-radius: 16px;
+  padding: 24px;
+  margin-bottom: 24px;
+}
+
+.result-label {
+  font-size: 14px;
+  color: #4b5563;
+  margin-bottom: 8px;
+}
+
+.result-name {
+  font-size: 24px;
+  font-weight: bold;
+  color: #15803d;
+}
+
+/* Alert/Error */
+.alert {
+  margin-bottom: 24px;
+  padding: 16px;
+  border-radius: 8px;
+}
+
+.alert--error {
+  background: #fee2e2;
+  border: 1px solid #fecaca;
+  color: #dc2626;
+}
+
+.alert--warning {
+  font-size: 12px;
+  color: #b45309;
+  background: #fef3c7;
+  padding: 8px 16px;
+  border-radius: 8px;
+  display: inline-block;
+  margin-bottom: 8px;
+}
+
+/* Forms */
+.form-group {
+  margin-bottom: 24px;
+}
+
+.form-label {
+  display: block;
+  font-weight: 600;
+  color: #1e293b;
+  margin-bottom: 8px;
+}
+
+.form-label--flex {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.form-label-icon {
+  width: 20px;
+  height: 20px;
+}
+
+.form-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 12px;
+}
+
+.input {
+  width: 100%;
+  padding: 12px;
+  border: 1px solid #cbd5e1;
+  border-radius: 8px;
+  font-size: 16px;
+}
+
+.input--small {
+  padding: 8px;
+  font-size: 15px;
+  flex: 1;
+}
+
+.input-group {
+  margin-bottom: 12px;
+}
+
+.input-row {
+  display: flex;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+
+/* Buttons */
+.button {
+  padding: 16px;
+  border-radius: 8px;
+  font-weight: bold;
+  font-size: 17px;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  transition: background 0.3s;
+}
+
+.button--full {
+  width: 100%;
+}
+
+.button--primary {
+  background: #dc2626;
+  color: #fff;
+}
+
+.button--primary:disabled {
+  background: #94a3b8;
+  cursor: not-allowed;
+}
+
+.button--blue {
+  background: #2563eb;
+  color: #fff;
+  padding: 8px 16px;
+  font-size: 14px;
+}
+
+.button--remove {
+  padding: 8px 16px;
+  background: #fee2e2;
+  color: #dc2626;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+}
+
+.button--add {
+  width: 100%;
+  padding: 10px;
+  border: 2px dashed #cbd5e1;
+  border-radius: 8px;
+  color: #64748b;
+  background: none;
+  cursor: pointer;
+  font-size: 15px;
+}
+
+.button--reset {
+  width: 100%;
+  margin-top: 32px;
+  background: #dc2626;
+  color: #fff;
+  padding: 12px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.button-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.button-icon--small {
+  width: 16px;
+  height: 16px;
+}
+
+/* Links Section */
+.links-header {
+  text-align: center;
+  margin-bottom: 32px;
+}
+
+.links-list {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.link-item {
+  background: #f9fafb;
+  border-radius: 8px;
+  padding: 16px;
+  border: 1px solid #e5e7eb;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.05);
+}
+
+.link-item-content {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.link-item-name {
+  font-weight: bold;
+  color: #1e293b;
+  font-size: 16px;
+}
