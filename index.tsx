@@ -227,65 +227,57 @@ export default function AmigoOculto() {
   }
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-red-50 to-green-50 p-4 py-8">
-      <div className="max-w-2xl mx-auto">
-        <div className="bg-white rounded-2xl shadow-xl p-8">
-          <div className="text-center mb-8">
-            <div className="bg-red-100 rounded-full w-20 h-20 flex items-center justify-center mx-auto mb-4">
-              <Gift className="w-10 h-10 text-red-600" />
+    <div style={{ minHeight: '100vh', background: '#f8fafc', padding: '32px' }}>
+      <div style={{ maxWidth: 600, margin: '0 auto' }}>
+        <div style={{ background: '#fff', borderRadius: 16, boxShadow: '0 2px 16px rgba(0,0,0,0.08)', padding: 32 }}>
+          <div style={{ textAlign: 'center', marginBottom: 32 }}>
+            <div style={{ background: '#fee2e2', borderRadius: '50%', width: 80, height: 80, display: 'flex', alignItems: 'center', justifyContent: 'center', margin: '0 auto 16px' }}>
+              <Gift style={{ width: 40, height: 40, color: '#dc2626' }} />
             </div>
-            <h1 className="text-3xl font-bold text-gray-800 mb-2">
-              Amigo Oculto
-            </h1>
-            <p className="text-gray-600">
-              Configure seu sorteio e gere os links
-            </p>
+            <h1 style={{ fontSize: 28, fontWeight: 'bold', color: '#1e293b', marginBottom: 8 }}>Amigo Oculto</h1>
+            <p style={{ color: '#475569' }}>Configure seu sorteio e gere os links</p>
           </div>
 
           {error && (
-            <div className="mb-6 bg-red-50 border border-red-200 text-red-700 px-4 py-3 rounded-lg">
+            <div style={{ marginBottom: 24, background: '#fee2e2', border: '1px solid #fecaca', color: '#dc2626', padding: 16, borderRadius: 8 }}>
               {error}
             </div>
           )}
 
-          <div className="mb-6">
-            <label className="block text-sm font-semibold text-gray-700 mb-2">
-              Nome do Sorteio
-            </label>
+          <div style={{ marginBottom: 24 }}>
+            <label style={{ display: 'block', fontWeight: 600, color: '#1e293b', marginBottom: 8 }}>Nome do Sorteio</label>
             <input
               type="text"
               value={drawName}
               onChange={(e) => setDrawName(e.target.value)}
               placeholder="Ex: Amigo Oculto 2025"
-              className="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+              style={{ width: '100%', padding: '12px', border: '1px solid #cbd5e1', borderRadius: 8, fontSize: 16 }}
             />
           </div>
 
-          <div className="mb-6">
-            <div className="flex items-center justify-between mb-3">
-              <label className="text-sm font-semibold text-gray-700 flex items-center gap-2">
-                <Users className="w-4 h-4" />
+          <div style={{ marginBottom: 24 }}>
+            <div style={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', marginBottom: 12 }}>
+              <label style={{ fontWeight: 600, color: '#1e293b', display: 'flex', alignItems: 'center', gap: 8 }}>
+                <Users style={{ width: 20, height: 20 }} />
                 Participantes
               </label>
-              <span className="text-xs text-gray-500">
-                {participants.filter(p => p.trim()).length} participantes
-              </span>
+              <span style={{ fontSize: 13, color: '#64748b' }}>{participants.filter(p => p.trim()).length} participantes</span>
             </div>
 
-            <div className="space-y-2 mb-3">
+            <div style={{ marginBottom: 12 }}>
               {participants.map((participant, index) => (
-                <div key={index} className="flex gap-2">
+                <div key={index} style={{ display: 'flex', gap: 8, marginBottom: 8 }}>
                   <input
                     type="text"
                     value={participant}
                     onChange={(e: ChangeEvent<HTMLInputElement>) => updateParticipant(index, e.target.value)}
                     placeholder={`Participante ${index + 1}`}
-                    className="flex-1 px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-red-500 focus:border-transparent"
+                    style={{ flex: 1, padding: '8px', border: '1px solid #cbd5e1', borderRadius: 8, fontSize: 15 }}
                   />
                   {participants.length > 1 && (
                     <button
                       onClick={() => removeParticipant(index)}
-                      className="px-4 py-2 bg-red-100 text-red-600 rounded-lg hover:bg-red-200 transition"
+                      style={{ padding: '8px 16px', background: '#fee2e2', color: '#dc2626', borderRadius: 8, border: 'none', cursor: 'pointer' }}
                     >
                       ✕
                     </button>
@@ -296,7 +288,7 @@ export default function AmigoOculto() {
 
             <button
               onClick={addParticipant}
-              className="w-full py-2 border-2 border-dashed border-gray-300 rounded-lg text-gray-600 hover:border-red-400 hover:text-red-600 transition"
+              style={{ width: '100%', padding: '10px', border: '2px dashed #cbd5e1', borderRadius: 8, color: '#64748b', background: 'none', cursor: 'pointer', fontSize: 15 }}
             >
               + Adicionar Participante
             </button>
@@ -305,13 +297,13 @@ export default function AmigoOculto() {
           <button
             onClick={performDraw}
             disabled={loading}
-            className="w-full bg-red-600 text-white py-4 rounded-lg hover:bg-red-700 transition font-semibold flex items-center justify-center gap-2 disabled:bg-gray-400 disabled:cursor-not-allowed"
+            style={{ width: '100%', padding: '16px', background: loading ? '#94a3b8' : '#dc2626', color: '#fff', borderRadius: 8, fontWeight: 600, fontSize: 17, border: 'none', cursor: loading ? 'not-allowed' : 'pointer', display: 'flex', alignItems: 'center', justifyContent: 'center', gap: 8 }}
           >
-            <Shuffle className="w-5 h-5" />
+            <Shuffle style={{ width: 22, height: 22 }} />
             Realizar Sorteio
           </button>
 
-          <p className="text-xs text-center text-gray-500 mt-4">
+          <p style={{ fontSize: 13, textAlign: 'center', color: '#64748b', marginTop: 16 }}>
             Mínimo de 3 participantes necessários
           </p>
         </div>
