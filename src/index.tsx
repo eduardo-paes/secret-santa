@@ -1,6 +1,12 @@
 import React, { useState, useEffect } from 'react';
 import type { ChangeEvent } from 'react';
 import { Gift, Users, Shuffle, Copy, Check } from 'lucide-react';
+import { createClient } from '@supabase/supabase-js';
+
+const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL || '';
+const supabaseKey: string = import.meta.env.VITE_SUPABASE_KEY || '';
+
+const supabase = createClient(supabaseUrl, supabaseKey);
 
 export default function AmigoOculto() {
   const [view, setView] = useState<string>('home');
@@ -47,7 +53,7 @@ export default function AmigoOculto() {
 
   const performDraw = async (): Promise<void> => {
     setError('');
-  const validParticipants = participants.filter((p: string) => p.trim() !== '');
+    const validParticipants = participants.filter((p: string) => p.trim() !== '');
     if (validParticipants.length < 3) {
       setError('É necessário pelo menos 3 participantes!');
       return;
@@ -58,18 +64,42 @@ export default function AmigoOculto() {
     }
     setLoading(true);
     try {
-      const response = await fetch('/api/draw', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ drawName: drawName.trim(), participants: validParticipants })
-      });
-      const data = await response.json();
-      if (!response.ok) {
-        setError(data.error || 'Erro ao realizar sorteio');
+      // Simulação: salvar sorteio no Supabase
+      const drawId = `draw_${Date.now()}_${Math.random().toString(36).substr(2, 9)}`;
+      let shuffled = [...validParticipants];
+      let validDraw = false;
+      let attempts = 0;
+      const maxAttempts = 100;
+      while (!validDraw && attempts < maxAttempts) {
+        shuffled = shuffled.sort(() => Math.random() - 0.5);
+        validDraw = validParticipants.every((p, i) => p !== shuffled[i]);
+        attempts++;
+      }
+      if (!validDraw) {
+        setError('Não foi possível sortear.');
         setLoading(false);
         return;
       }
-      setLinks(data.links);
+      const results = validParticipants.map((giver, i) => ({
+        draw_id: drawId,
+        draw_name: drawName,
+        giver,
+        receiver: shuffled[i],
+        result_id: `result_${Date.now()}_${i}_${Math.random().toString(36).substr(2, 9)}`
+      }));
+      // Salvar no Supabase
+      const { error } = await supabase.from('results').insert(results);
+      if (error) {
+        setError(error.message);
+        setLoading(false);
+        return;
+      }
+      // Gerar links
+      const links = results.map(r => ({
+        name: r.giver,
+        link: `#result/${r.result_id}`
+      }));
+      setLinks(links);
       setView('links');
     } catch (err) {
       setError('Erro ao realizar sorteio.');
@@ -82,10 +112,10 @@ export default function AmigoOculto() {
     setLoading(true);
     setError('');
     try {
-      const response = await fetch(`/api/draw?result_id=${resultId}`);
-      const data = await response.json();
-      if (!response.ok) {
-        setError(data.error || 'Resultado não encontrado! O link pode ter expirado.');
+      // Buscar resultado no Supabase
+      const { data, error } = await supabase.from('results').select('*').eq('result_id', resultId).single();
+      if (error || !data) {
+        setError('Resultado não encontrado! O link pode ter expirado.');
         setView('home');
         setLoading(false);
         return;

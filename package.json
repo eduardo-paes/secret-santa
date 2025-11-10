@@ -2,7 +2,7 @@
   "name": "secret-santa",
   "version": "1.0.0",
   "description": "App de sorteio de amigo oculto com Netlify Functions e Supabase",
-  "main": "index.tsx",
+  "main": "src/index.tsx",
   "type": "module",
   "scripts": {
     "dev": "vite",
@@ -12,6 +12,7 @@
     "netlify": "netlify dev"
   },
   "dependencies": {
+    "@supabase/supabase-js": "^2.81.0",
     "@vitejs/plugin-react": "^5.1.0",
     "lucide-react": "^0.553.0",
     "react": "^19.2.0",
