@@ -2,9 +2,11 @@ import React, { useState, useEffect } from 'react';
 import type { ChangeEvent } from 'react';
 import { Gift, Users, Shuffle, Copy, Check } from 'lucide-react';
 import { createClient } from '@supabase/supabase-js';
+import './global.css';
 
 const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL || '';
 const supabaseKey: string = import.meta.env.VITE_SUPABASE_KEY || '';
+const appUrl: string = import.meta.env.VITE_APP_URL || "";
 
 const supabase = createClient(supabaseUrl, supabaseKey);
 
@@ -131,13 +133,16 @@ export default function AmigoOculto() {
   };
 
   const copyToClipboard = (text: string, name: string): void => {
-    navigator.clipboard.writeText(text).then(() => {
-      setCopied(name);
-      setTimeout(() => setCopied(''), 2000);
-    }).catch(err => {
-      console.error('Erro ao copiar:', err);
-      alert('Erro ao copiar link. Selecione e copie manualmente.');
-    });
+    navigator.clipboard
+      .writeText(`${appUrl}/${text}`)
+      .then(() => {
+        setCopied(name);
+        setTimeout(() => setCopied(""), 2000);
+      })
+      .catch((err) => {
+        console.error("Erro ao copiar:", err);
+        alert("Erro ao copiar link. Selecione e copie manualmente.");
+      });
   };
 
   const resetApp = (): void => {
