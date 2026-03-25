@@ -8,7 +8,7 @@ import ParticipantForm from "./components/ParticipantForm";
 import ErrorAlert from "./components/ErrorAlert";
 
 const supabaseUrl: string = import.meta.env.VITE_SUPABASE_URL || "";
-const supabaseKey: string = import.meta.env.VITE_SUPABASE_KEY || "";
+const supabaseKey: string = import.meta.env.VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY || "";
 const appUrl: string = import.meta.env.VITE_APP_URL || "";
 
 const supabase = createClient(supabaseUrl, supabaseKey);

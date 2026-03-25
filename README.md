@@ -52,7 +52,7 @@ O **Secret Santa App** é uma aplicação simples e intuitiva para organizar sor
 
    ```env
    VITE_SUPABASE_URL=your-supabase-url
-   VITE_SUPABASE_KEY=your-supabase-key
+   VITE_SUPABASE_PUBLISHABLE_DEFAULT_KEY=your-supabase-key
    ```
 
 5. Inicie o servidor de desenvolvimento:
