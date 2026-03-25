@@ -1,0 +1,18 @@
+{
+  "name": "Amigo Oculto",
+  "short_name": "Amigo Oculto",
+  "description": "Organize seu sorteio de Amigo Oculto online, grátis e sem cadastro.",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#dc2626",
+  "lang": "pt-BR",
+  "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    }
+  ]
+}
