@@ -9,18 +9,20 @@ interface ResultCardProps {
 
 export default function ResultCard({ drawName, giver, receiver }: ResultCardProps) {
   return (
-    <div className="page-container page-container--result">
+    <div className="page-container page-container--centered">
       <div className="card card--result">
-        <div className="icon-circle icon-circle--red icon-circle--result">
+        {drawName && <p className="result-event">{drawName}</p>}
+        <div className="icon-circle icon-circle--red">
           <Gift className="icon--red" />
         </div>
-        <h1 className="title title--medium title--center">{drawName}</h1>
-        <p className="subtitle subtitle--gray">Olá, {giver}!</p>
+        <p className="result-greeting">
+          Olá, <strong>{giver}</strong>!
+        </p>
+        <p className="result-hint">Você tirou:</p>
         <div className="result-box">
-          <p className="result-label">Você tirou:</p>
           <p className="result-name">{receiver}</p>
         </div>
-        <p className="text-small">Mantenha em segredo! 🤫</p>
+        <p className="result-secret">🤫 Mantenha em segredo!</p>
       </div>
     </div>
   );
