@@ -1,0 +1,7 @@
+User-agent: *
+Allow: /
+
+# Block individual result pages — they are private, ephemeral links
+Disallow: /#result/
+
+Sitemap: https://amigooculto.netlify.app/sitemap.xml
