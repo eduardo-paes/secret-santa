@@ -284,7 +284,7 @@ body {
   padding: 11px 14px;
   border: 1.5px solid var(--slate-200);
   border-radius: 10px;
-  font-size: 15px;
+  font-size: 16px; /* 16px minimum prevents iOS Safari zoom on focus */
   font-family: inherit;
   color: var(--slate-800);
   background: #fff;
@@ -301,7 +301,7 @@ body {
 
 .input--small {
   padding: 9px 12px;
-  font-size: 14px;
+  font-size: 16px; /* 16px minimum prevents iOS Safari zoom on focus */
   flex: 1;
 }
 
@@ -532,3 +532,73 @@ body {
 
 .button--whatsapp:hover { background: #1ebe5d; }
 .button--whatsapp:active { transform: scale(0.97); }
+
+/* ── Mobile ──────────────────────────────────── */
+
+@media (max-width: 480px) {
+  .page-container {
+    padding: 20px 12px;
+  }
+
+  .card {
+    padding: 24px 20px;
+    border-radius: 16px;
+  }
+
+  /* Result card sits flush, centred with breathing room */
+  .page-container--centered {
+    align-items: flex-start;
+    padding-top: 32px;
+  }
+
+  .card--result {
+    max-width: 100%;
+  }
+
+  .result-name {
+    font-size: 26px;
+  }
+
+  /* Stack link rows: name on top, buttons below */
+  .link-item {
+    padding: 14px;
+  }
+
+  .link-item-content {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 10px;
+  }
+
+  .link-item-actions {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 8px;
+  }
+
+  .button--blue,
+  .button--whatsapp {
+    justify-content: center;
+    min-height: 44px;
+    font-size: 14px;
+  }
+
+  /* Ensure all tappable elements meet 44px minimum */
+  .button--primary,
+  .button--reset {
+    min-height: 52px;
+  }
+
+  .button--add {
+    min-height: 44px;
+  }
+
+  .button--remove {
+    min-width: 36px;
+    min-height: 36px;
+    justify-content: center;
+  }
+
+  .title { font-size: 22px; }
+  .title--medium { font-size: 20px; }
+}
