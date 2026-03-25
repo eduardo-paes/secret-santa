@@ -508,3 +508,27 @@ body {
   color: var(--slate-800);
   font-size: 15px;
 }
+
+.link-item-actions {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.button--whatsapp {
+  background: #25d366;
+  color: #fff;
+  padding: 8px 14px;
+  font-size: 13px;
+  border-radius: 8px;
+  font-weight: 600;
+  font-family: inherit;
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  text-decoration: none;
+  transition: background 0.15s, transform 0.1s;
+}
+
+.button--whatsapp:hover { background: #1ebe5d; }
+.button--whatsapp:active { transform: scale(0.97); }
